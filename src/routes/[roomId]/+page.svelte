@@ -78,7 +78,7 @@
         },
         {
           urls: "turn:numb.viagenie.ca",
-          credential: "muazkh",
+          credential: "muezin",
           username: "webrtc@live.com",
         },
       ],
