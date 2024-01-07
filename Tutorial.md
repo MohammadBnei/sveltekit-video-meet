@@ -60,6 +60,10 @@ Open the `server.ts` file and input the following TypeScript code:
 import { Server, Socket } from "socket.io";
 
 export default function (server) {
+  if (server.httpServer) {
+    return;
+  }
+
   const io = new Server(server.httpServer);
 
   io.on("connection", (socket: Socket) => {
@@ -70,15 +74,15 @@ export default function (server) {
       socket.emit("users", users.map((socket) => socket.id));
     });
 
-    socket.on("offer", (payload: { target: string; caller: string; sdp: RTCSessionDescriptionInit; }) => {
+    socket.on("offer", (payload: { target: string; caller: string; sdp: RTCSessionDescription; }) => {
       io.to(payload.target).emit("offer", payload);
     });
 
-    socket.on("answer", (payload: { target: string; caller: string; sdp: RTCSessionDescriptionInit; }) => {
+    socket.on("answer", (payload: { target: string; caller: string; sdp: RTCSessionDescription; }) => {
       io.to(payload.target).emit("answer", payload);
     });
 
-    socket.on("ice-candidate", (incoming: { target: string; candidate: RTCIceCandidateInit; }) => {
+    socket.on("ice-candidate", (incoming: { target: string; candidate: RTCIceCandidate; }) => {
       io.to(incoming.target).emit("ice-candidate", incoming.candidate);
     });
 
