@@ -234,8 +234,8 @@ Include the following code in your `+page.svelte` file:
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { io, Socket } from 'socket.io-client';
-  import Video from '$lib/components/video.svelte';
-  import IncommingCall from '$lib/components/incoming-call.svelte';
+  import Video from '$lib/components/Video.svelte';
+  import IncommingCall from '$lib/components/incomming-call.svelte';
   import RemoteUsersModal from '$lib/components/remote-users-modal.svelte';
   import RoomInfo from '$lib/components/room-info.svelte';
   import { goto } from '$app/navigation';
